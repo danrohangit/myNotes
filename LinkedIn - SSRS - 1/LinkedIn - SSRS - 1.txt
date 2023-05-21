@@ -1,0 +1,176 @@
+- Server name required to connect report to database
+
+- SSRS provides tools and services to report data
+
+=====================================================
+Visualize data - SSRS
+
+- Format data
+
+- Utilize charts
+
+- Explain data/leave comments
+
+- Allows users to quickly understand 
+
+======================================================
+Report Builder
+
+- Create reports
+
+- Style reports
+
+- Retrieve current data from database
+
+- Server connection and layout saved in report definition
+
+- Reporting Services only needs access to a SQL Server instance, 
+but it can be on a remote machine.
+
+==========================================================
+Web Portal
+
+- Users login to view reports
+
+- Users can view reports on mobile screen
+
+- Explore key performance indicators
+
+- Users with proper permissions can customize reports
+
+===========================================================
+Report Components
+
+Data Source
+
+- Location data is stored
+
+- Connection and authentication parameteres
+
+- Connects to a specific database server
+
+Data Set
+
+- Retrieves the data to be visualized
+
+- Consists of tables and rows
+
+- Uses standard SQL queries
+
+- Can use gui
+
+Report layout
+
+- format of elements, tables etc
+
+- Can be stylized
+
+Report definition
+
+- Stored in report server
+
+- Connect to data source, retrieve data set, set layout
+===============================================================
+SETUP
+
+1. For report server configuration connection, make sure server name is correct
+and click connect
+
+2. For service account, domain user can be more secure, choose default built-in
+account
+
+3. Web Service URL - Default - Apply
+
+4. Database - Change database - Create a new report server database - Default
+P.S if error, check server name. Encountered the default using wrong server name
+- Next to all - Apply
+
+5. Web portal URL - Default - Apply
+
+6. Exit
+
+================================================================
+SETUP
+
+1. http://{{servername(maybe without SQLEXPRESS}}/reports/browse - Do not use
+private browser - TCP port 80 is default for reporting services
+
+1.1 windows firewall - inboud rules - new rule - port - next - tcp - specific local
+port - 80 - next - allow the connection - next - apply to all connections - next
+- name - SSRS - description is allow access to reporting servicecs - ok
+
+1.2 use ip address to login and provide windows login account
+
+1.3 in admin pc - manage folder - add group or user - group or user should be the
+name of pc that needs access - all roles - ok
+
+2. click download - report builder - download - install - all default - install
+
+3. open report builder OR click on + sign on webpage and open paginated reports
+
+=================================================================================
+Basic report
+
+1. open blank report - view tab, report data and ruler - name, WideWorldImporters -
+embed option,default,build, set server name(click server name button on sql server,
+use windows auth,select database - ok
+
+2. new,dataset,dataset embedded,query designer,application,tables,people,full name,
+phone number,email address,(aggregate column in group by),ok,ok,
+
+3. insert table wizard, people,next,select all fields and put in value,next,next,
+finish,adjust table size,run,design - save (save to reportserver to be made available
+in web portal,
+
+====================================================================================
+Joining data tables
+
+1. new paginated report,blank report,add data source,add data set - purchaseorders,
+purchaseorderid,orderdate,isorderfinalized - purchaseorderlines,purchaseorderlinesid,
+stockitemid,orderedouters,description,expand relationships to chek inner join
+
+2.create the table
+
+3. Use properties menu/feature under view to hide duplicate numbers
+
+4. make sure to check the report via saving as pdf. it might look different
+
+=====================================================================================
+
+To link a report to another report e.g
+
+A report with a list of rows of distinct years
+If user clicks on a year, the user will be redirected to another report and the
+year previously selected will be shown
+
+1. First report with list of year
+2. select the year cell
+3. make sure properties is open and click on property pages
+4. Select action
+5. go to report
+6. Specify a report e.g salessummary
+7. add parameter name e.g transactionyear and year as value
+8. ok
+
+======================================================================================
+Chart - view prompted year and previous year of prompt
+
+1. double click chart to get new window, might be beneath properties
+its called chart data
+2. add to series groups, e.g transactionyear into series groups
+3. double click dataset
+4. filters
+5. change operator to between
+6. the starting value should be the ending value -1 e.g transactionyear-1
+7. click upper left of table the square box top left
+8. click table properties
+9. filters
+10. expression should be transaction year,operation = , value set to transcationyear
+
+========================================================================================
+
+I cannot save mobile report because i do not have sql enterprise edition
+I am using SQL Express
+
+Also, the SQL developer edition cannot be used for production environment so i did not
+install that either
